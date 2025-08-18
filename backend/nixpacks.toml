@@ -1,0 +1,16 @@
+# Force rebuild: 2025-06-14
+[phases.setup]
+nixPkgs = ["nodejs-18_x", "chromium"]
+
+[phases.install]
+cmds = [
+  "npm ci --only=production",
+  "which chromium || echo 'Chromium not found in PATH'",
+  "ls -la /nix/store/*chromium*/bin/ || echo 'Chromium bin not found'"
+]
+
+[start]
+cmd = "node server.js"
+
+[variables]
+PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = "true"
