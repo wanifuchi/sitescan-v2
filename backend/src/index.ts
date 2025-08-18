@@ -8,6 +8,7 @@ import { initializeDatabase } from './config/database';
 import { logger } from './utils/logger';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import analysisRoutes from './routes/analysisRoutes';
+import adminRoutes from './routes/adminRoutes';
 import './workers/analysisWorker';
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(cors({
     
     // 本番環境では特定のドメインのみ許可
     const allowedOrigins = [
+      'https://site-scan-v2.vercel.app',
       'https://website-analyzer-frontend.vercel.app',
       'https://toneya-analysis-v1-frontend.vercel.app'
     ];
@@ -49,13 +51,14 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 app.use('/api/analysis', analysisRoutes);
+app.use('/api/admin', adminRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({
     success: true,
-    message: 'Toneya Analysis V1 API is running',
+    message: 'SiteScan V2 API is running',
     timestamp: new Date().toISOString(),
-    version: '1.0.0'
+    version: '1.0.1'
   });
 });
 
