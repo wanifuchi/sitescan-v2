@@ -39,7 +39,7 @@ export interface PageSpeedResults {
 }
 
 class PageSpeedService {
-  private readonly apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'https://website-analyzer-production-c933.up.railway.app';
+  private readonly apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'https://sitescan-v2-production.up.railway.app';
 
   /**
    * バックエンド経由でPageSpeedデータを取得（安全な方法）

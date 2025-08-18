@@ -32,7 +32,7 @@ export class AnalysisService {
   // バックエンドに分析をリクエスト
   private static async requestBackendAnalysis(analysisId: string, url: string): Promise<void> {
     try {
-      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://website-analyzer-production-c933.up.railway.app';
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://sitescan-v2-production.up.railway.app';
       
       const response = await fetch(`${API_BASE_URL}/api/analysis/start`, {
         method: 'POST',

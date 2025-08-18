@@ -102,7 +102,7 @@ export class AdminService {
   // 管理者ログイン
   static async login(credentials: AdminCredentials): Promise<AdminAuthResponse> {
     try {
-      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://website-analyzer-production-c933.up.railway.app';
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://sitescan-v2-production.up.railway.app';
       
       const response = await fetch(`${API_BASE_URL}/api/admin/login`, {
         method: 'POST',
@@ -139,7 +139,7 @@ export class AdminService {
     try {
       const token = this.getToken();
       if (token) {
-        const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://website-analyzer-production-c933.up.railway.app';
+        const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://sitescan-v2-production.up.railway.app';
         
         // サーバーにログアウトを通知（オプション）
         try {
@@ -175,7 +175,7 @@ export class AdminService {
   // 管理者用分析統計を取得
   static async getAnalysisStats(): Promise<AdminAnalysisStats | null> {
     try {
-      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://website-analyzer-production-c933.up.railway.app';
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://sitescan-v2-production.up.railway.app';
       
       const response = await fetch(`${API_BASE_URL}/api/admin/analytics/stats`, {
         headers: this.getAuthHeaders(),
@@ -223,7 +223,7 @@ export class AdminService {
     };
   } | null> {
     try {
-      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://website-analyzer-production-c933.up.railway.app';
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://sitescan-v2-production.up.railway.app';
       
       const params = new URLSearchParams({
         page: page.toString(),
@@ -255,7 +255,7 @@ export class AdminService {
   // 特定の分析結果を取得（管理者用）
   static async getAnalysisById(analysisId: string): Promise<AnalysisResult | null> {
     try {
-      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://website-analyzer-production-c933.up.railway.app';
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://sitescan-v2-production.up.railway.app';
       
       const response = await fetch(`${API_BASE_URL}/api/admin/analytics/analysis/${analysisId}`, {
         headers: this.getAuthHeaders(),
@@ -281,7 +281,7 @@ export class AdminService {
   // 分析結果を削除（管理者用）
   static async deleteAnalysis(analysisId: string): Promise<boolean> {
     try {
-      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://website-analyzer-production-c933.up.railway.app';
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://sitescan-v2-production.up.railway.app';
       
       const response = await fetch(`${API_BASE_URL}/api/admin/analytics/analysis/${analysisId}`, {
         method: 'DELETE',
@@ -303,7 +303,7 @@ export class AdminService {
   // システム設定を取得
   static async getSystemSettings(): Promise<any> {
     try {
-      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://website-analyzer-production-c933.up.railway.app';
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://sitescan-v2-production.up.railway.app';
       
       const response = await fetch(`${API_BASE_URL}/api/admin/settings`, {
         headers: this.getAuthHeaders(),
@@ -324,7 +324,7 @@ export class AdminService {
   // データエクスポート（管理者用）
   static async exportAllData(format: 'json' | 'csv' = 'json'): Promise<void> {
     try {
-      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://website-analyzer-production-c933.up.railway.app';
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://sitescan-v2-production.up.railway.app';
       
       const response = await fetch(`${API_BASE_URL}/api/admin/export?format=${format}`, {
         headers: this.getAuthHeaders(),
@@ -411,7 +411,7 @@ export class AdminService {
       const token = this.getToken();
       if (!token) return false;
 
-      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://website-analyzer-production-c933.up.railway.app';
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://sitescan-v2-production.up.railway.app';
       
       const response = await fetch(`${API_BASE_URL}/api/admin/validate`, {
         headers: this.getAuthHeaders(),
