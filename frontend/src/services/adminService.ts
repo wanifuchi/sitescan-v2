@@ -112,6 +112,14 @@ export class AdminService {
         body: JSON.stringify(credentials),
       });
 
+      // レスポンスタイプをチェック
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        const text = await response.text();
+        console.error('サーバーから非JSONレスポンス:', text);
+        throw new Error('サーバーの管理者APIが利用できません。デプロイ状況を確認してください。');
+      }
+
       const data = await response.json();
 
       if (data.success && data.token && data.user) {
