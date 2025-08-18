@@ -8,7 +8,7 @@ echo "🌐 SiteScan V2 ドメインURL更新スクリプト"
 echo "============================================="
 
 # 新しいドメインをユーザーに入力してもらう
-read -p "新しいドメイン名を入力してください (例: sitescan.vercel.app): " NEW_DOMAIN
+read -p "新しいドメイン名を入力してください (例: site-scan-v2.vercel.app): " NEW_DOMAIN
 
 if [ -z "$NEW_DOMAIN" ]; then
     echo "❌ ドメイン名が入力されていません。"
@@ -16,7 +16,7 @@ if [ -z "$NEW_DOMAIN" ]; then
 fi
 
 # 現在のドメイン
-OLD_DOMAIN="frontend-g50sldbhl-wanifucks.vercel.app"
+OLD_DOMAIN="site-scan-v2.vercel.app"
 OLD_URL="https://$OLD_DOMAIN"
 NEW_URL="https://$NEW_DOMAIN"
 

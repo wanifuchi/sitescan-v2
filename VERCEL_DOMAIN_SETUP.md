@@ -1,14 +1,14 @@
 # 🌐 Vercel カスタムドメイン設定ガイド
 
 ## 📋 現在の状況
-- 現在のURL: https://frontend-g50sldbhl-wanifucks.vercel.app
-- 目標: `sitescan.vercel.app` などの分かりやすいURLに変更
+- 旧URL: https://frontend-g50sldbhl-wanifucks.vercel.app
+- 新URL: `site-scan-v2.vercel.app` に確定・設定完了
 
 ## 🎯 推奨URL候補
 
 ### 第1候補グループ（シンプル）
-- `sitescan.vercel.app` ⭐️ **最推奨**
-- `site-scan.vercel.app`
+- `site-scan-v2.vercel.app` ✅ **確定済み**
+- `sitescan.vercel.app`
 - `sitescanner.vercel.app`
 
 ### 第2候補グループ（機能性重視）
@@ -30,7 +30,7 @@
    - GitHubアカウントでサインイン
 
 2. **プロジェクト選択**
-   - `frontend-g50sldbhl-wanifucks` プロジェクトをクリック
+   - SiteScan V2 プロジェクトをクリック
 
 ### ステップ2: ドメイン設定
 
@@ -42,7 +42,7 @@
 
 3. **新しいドメイン追加**
    - "Add" ボタンをクリック
-   - 希望するドメイン名を入力（例：`sitescan.vercel.app`）
+   - 希望するドメイン名を入力（例：`site-scan-v2.vercel.app`）
    - "Add" をクリック
 
 ### ステップ3: ドメイン利用可能性確認
@@ -50,12 +50,12 @@
 #### 利用可能な場合 ✅
 ```
 ✓ Domain added successfully
-✓ sitescan.vercel.app is now pointing to your project
+✓ site-scan-v2.vercel.app is now pointing to your project
 ```
 
 #### 既に使用されている場合 ❌
 ```
-❌ Domain sitescan.vercel.app is not available
+❌ Domain site-scan-v2.vercel.app is not available
 ```
 → 次の候補を試す
 
@@ -71,17 +71,17 @@
 ### ステップ5: 動作確認
 
 1. **新URLへアクセス**
-   - 例：https://sitescan.vercel.app
+   - 例：https://site-scan-v2.vercel.app
 
 2. **リダイレクト確認**
-   - 古いURL（frontend-g50sldbhl-wanifucks.vercel.app）も継続利用可能
+   - 新URL（site-scan-v2.vercel.app）がメイン、古いURLも継続利用可能
    - 自動リダイレクトは設定されません（両方とも有効）
 
 ## 🔄 関連設定の更新が必要な箇所
 
 ### 1. Railway バックエンド環境変数
 ```bash
-CORS_ORIGIN=https://sitescan.vercel.app
+CORS_ORIGIN=https://site-scan-v2.vercel.app
 ```
 
 ### 2. プロジェクトファイルの更新
@@ -93,10 +93,10 @@ CORS_ORIGIN=https://sitescan.vercel.app
 ### 3. ソーシャルメタタグ更新
 ```html
 <!-- Open Graph -->
-<meta property="og:url" content="https://sitescan.vercel.app" />
+<meta property="og:url" content="https://site-scan-v2.vercel.app" />
 
 <!-- Twitter Card -->  
-<meta name="twitter:url" content="https://sitescan.vercel.app" />
+<meta name="twitter:url" content="https://site-scan-v2.vercel.app" />
 ```
 
 ## 💰 コストと制限
@@ -117,7 +117,7 @@ CORS_ORIGIN=https://sitescan.vercel.app
 1. **Vercel ダッシュボード**を開く
 2. **候補リストから順番に試す**
    - sitescan.vercel.app
-   - site-scan.vercel.app  
+   - site-scan-v2.vercel.app ✅ **確定済み**  
    - sitescanner.vercel.app
    - website-analyzer.vercel.app
 3. **利用可能なドメインを設定**
@@ -143,7 +143,7 @@ CORS_ORIGIN=https://sitescan.vercel.app
 
 ## 🚨 注意事項
 
-- 古いURL（frontend-g50sldbhl-wanifucks.vercel.app）も継続利用可能
+- 新URL（site-scan-v2.vercel.app）がメイン、古いURLも継続利用可能
 - 新しいドメインは即座に有効になります
 - Railway の CORS 設定更新まで管理者機能は使用不可
 - ドメイン名は後から変更可能（いつでも追加・削除可能）
