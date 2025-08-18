@@ -84,7 +84,7 @@ echo "   - Settings → Domains → Add: $NEW_DOMAIN"
 echo ""
 echo "3. 動作確認:"
 echo "   - 新URL: $NEW_URL"
-echo "   - 管理画面: $NEW_URL/admin"
+echo "   - 管理画面: $NEW_URL/admin/login"
 echo ""
 
 read -p "Git コミットを実行しますか？ (y/N): " git_commit
