@@ -2,7 +2,7 @@
 
 ## 📋 準備完了状況
 - ✅ GitHubリポジトリ: https://github.com/wanifucks/website-analyzer-v2
-- ✅ Vercelフロントエンド: https://frontend-g50sldbhl-wanifucks.vercel.app
+- ✅ Vercelフロントエンド: https://sitescan.vercel.app
 - 🔄 次：Railway バックエンドデプロイ
 
 ## 🚀 Railway デプロイ手順（ブラウザ操作）
@@ -57,7 +57,7 @@ Backend サービスの "Variables" タブで以下を設定：
 NODE_ENV=production
 JWT_SECRET=SiteScan-V2-Super-Secure-JWT-Secret-Key-For-Admin-Authentication-256bit-2024
 PORT=3002
-CORS_ORIGIN=https://frontend-g50sldbhl-wanifucks.vercel.app
+CORS_ORIGIN=https://sitescan.vercel.app
 
 # Puppeteer（重要！）
 PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
@@ -142,7 +142,7 @@ Railway デプロイ完了後：
 
 1. **Vercel ダッシュボード**
    - https://vercel.com/dashboard
-   - `frontend-g50sldbhl-wanifucks` プロジェクトを開く
+   - SiteScan V2 プロジェクトを開く
 
 2. **環境変数設定**
    - "Settings" → "Environment Variables"
@@ -155,6 +155,17 @@ Railway デプロイ完了後：
 
 3. **再デプロイ**
    - "Deployments" タブで最新デプロイメントの "..." → "Redeploy"
+
+## 🔄 ドメイン名の変更
+
+ドメインを `https://sitescan.vercel.app` に設定するには：
+
+1. **VERCEL_DOMAIN_SETUP.md** を参照
+2. Vercel ダッシュボードで希望のドメインを追加
+3. 利用可能なドメイン候補：
+   - `sitescan.vercel.app` ⭐️ 最推奨
+   - `site-scan.vercel.app`
+   - `website-analyzer.vercel.app`
 
 ## ✅ 最終確認チェックリスト
 

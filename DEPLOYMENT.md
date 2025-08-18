@@ -4,7 +4,7 @@
 
 ### ✅ 完了済み
 - [x] GitHub リポジトリ作成・推送 (https://github.com/wanifucks/website-analyzer-v2)
-- [x] Vercel フロントエンド デプロイ (https://frontend-g50sldbhl-wanifucks.vercel.app)
+- [x] Vercel フロントエンド デプロイ (https://sitescan.vercel.app)
 
 ### 🔄 実行中・予定
 - [ ] Railway バックエンド デプロイ
@@ -63,7 +63,7 @@
    NODE_ENV=production
    JWT_SECRET=your-super-secure-jwt-secret-key-256bit
    PORT=3002
-   CORS_ORIGIN=https://frontend-g50sldbhl-wanifucks.vercel.app
+   CORS_ORIGIN=https://sitescan.vercel.app
    
    # データベース（自動設定）
    DATABASE_URL=${{PostgreSQL.DATABASE_URL}}
