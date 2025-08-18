@@ -1,52 +1,96 @@
-# Toneya Analysis V1 - デプロイメントガイド
+# SiteScan V2 - デプロイメントガイド
+
+## 📋 デプロイ現状
+
+### ✅ 完了済み
+- [x] GitHub リポジトリ作成・推送 (https://github.com/wanifucks/website-analyzer-v2)
+- [x] Vercel フロントエンド デプロイ (https://frontend-g50sldbhl-wanifucks.vercel.app)
+
+### 🔄 実行中・予定
+- [ ] Railway バックエンド デプロイ
+- [ ] PostgreSQL データベース設定
+- [ ] 環境変数設定
+- [ ] 管理者ユーザー初期作成
+- [ ] 動作確認・テスト
 
 ## 構成
 
-- **バックエンド**: Railway (PostgreSQL含む)
+- **バックエンド**: Railway (PostgreSQL含む) + Docker
 - **フロントエンド**: Vercel
 - **データベース**: Railway PostgreSQL
+- **アーキテクチャ**: プライバシー重視の二重アクセス設計
 
 ## 1. Railway でバックエンドをデプロイ
 
 ### 前提条件
 - Githubアカウント
 - Railwayアカウント（https://railway.app/）
+- Docker対応（Puppeteer + Chrome）
 
 ### 手順
 
-1. **GitHubリポジトリ作成**
+1. **GitHubリポジトリ準備**
    ```bash
-   cd /Users/noriaki/Desktop/claude_base/analytic/website-analyzer
-   git init
-   git add .
-   git commit -m "Initial commit: Toneya Analysis V1"
-   
-   # GitHubでリポジトリ作成後
-   git remote add origin https://github.com/YOUR_USERNAME/website-analyzer.git
-   git push -u origin main
+   # 既に完了済み
+   Repository: https://github.com/wanifucks/website-analyzer-v2
+   Branch: main
+   Backend Path: /backend
    ```
 
 2. **Railway で新しいプロジェクト作成**
    - https://railway.app/ にアクセス
    - "New Project" をクリック
    - "Deploy from GitHub repo" を選択
-   - 作成したリポジトリを選択
+   - `website-analyzer-v2` リポジトリを選択
 
-3. **PostgreSQL データベース追加**
+3. **サービス設定**
+   - **Root Directory**: `backend`
+   - **Build Command**: `npm ci`  
+   - **Start Command**: `npm start`
+   - **Port**: `3002`
+   - **Dockerfile**: 自動検出（Puppeteer + Chrome対応）
+
+4. **PostgreSQL データベース追加**
    - プロジェクトダッシュボードで "+ New" をクリック
    - "Database" → "PostgreSQL" を選択
-
-4. **バックエンドサービス設定**
-   - "New Service" → "GitHub Repo" → backendフォルダ
-   - または Root Directory を `backend` に設定
+   - 自動的に `DATABASE_URL` 環境変数が設定される
 
 5. **環境変数設定**
    Railway dashboard で以下を設定:
-   ```
+
+   #### 必須環境変数
+   ```bash
    NODE_ENV=production
-   DATABASE_URL=${{Postgres.DATABASE_URL}}
-   FRONTEND_URL=https://your-vercel-app.vercel.app
+   JWT_SECRET=your-super-secure-jwt-secret-key-256bit
    PORT=3002
+   CORS_ORIGIN=https://frontend-g50sldbhl-wanifucks.vercel.app
+   
+   # データベース（自動設定）
+   DATABASE_URL=${{PostgreSQL.DATABASE_URL}}
+   
+   # Puppeteer設定
+   PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+   PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
+   PUPPETEER_DISABLE_HEADLESS_WARNING=true
+   
+   # 管理者設定
+   ADMIN_DEFAULT_USERNAME=admin
+   ADMIN_DEFAULT_EMAIL=admin@sitescan.local
+   ADMIN_DEFAULT_PASSWORD=SecureAdmin123!
+   
+   # セキュリティ設定
+   BCRYPT_ROUNDS=12
+   RATE_LIMIT_WINDOW_MS=900000
+   RATE_LIMIT_MAX_REQUESTS=100
+   
+   # API設定
+   API_TIMEOUT=30000
+   MAX_CONCURRENT_ANALYSES=3
+   
+   # 分析設定
+   ANALYSIS_TIMEOUT=120000
+   MAX_PAGES_PER_ANALYSIS=50
+   CRAWLER_DELAY=1000
    ```
 
 6. **カスタムドメイン設定（オプション）**
