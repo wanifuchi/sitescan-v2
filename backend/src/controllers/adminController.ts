@@ -86,7 +86,7 @@ export class AdminController {
           username: adminUser.username,
           role: adminUser.role 
         },
-        process.env.JWT_SECRET || 'sitescan-admin-secret',
+        process.env.JWT_SECRET || 'sitescan-v2-default-jwt-secret-change-in-production',
         { expiresIn: '24h' }
       );
 
@@ -123,7 +123,7 @@ export class AdminController {
         return;
       }
 
-      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'sitescan-admin-secret') as any;
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'sitescan-v2-default-jwt-secret-change-in-production') as any;
       
       const adminUser = await this.adminUserRepository.findOne({
         where: { id: decoded.userId, isActive: true }

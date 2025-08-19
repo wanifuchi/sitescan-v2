@@ -26,7 +26,7 @@ export const authenticateAdmin = async (
     // トークンの検証
     const decoded = jwt.verify(
       token,
-      process.env.JWT_SECRET || 'sitescan-admin-secret'
+      process.env.JWT_SECRET || 'sitescan-v2-default-jwt-secret-change-in-production'
     ) as any;
 
     // ユーザーの存在確認

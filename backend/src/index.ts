@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import { initializeDatabase } from './config/database';
 import { logger } from './utils/logger';
+import { validateEnvironment } from './config/environment';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import analysisRoutes from './routes/analysisRoutes';
 import adminRoutes from './routes/adminRoutes';
@@ -70,9 +71,31 @@ const startServer = async (): Promise<void> => {
     console.log('🔥 Starting SiteScan V2 server initialization...');
     console.log('Environment:', process.env.NODE_ENV);
     console.log('Port:', PORT);
-    console.log('Database URL exists:', !!process.env.DATABASE_URL);
+    
+    // 環境変数の検証
+    validateEnvironment();
+    
+    // 環境変数デバッグ
+    console.log('📊 Environment Variables Debug:');
+    console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
+    console.log('DATABASE_PUBLIC_URL exists:', !!process.env.DATABASE_PUBLIC_URL);
+    console.log('POSTGRES_URL exists:', !!process.env.POSTGRES_URL);
+    console.log('DATABASE_PRIVATE_URL exists:', !!process.env.DATABASE_PRIVATE_URL);
+    console.log('Available env keys:', Object.keys(process.env).filter(key => 
+      key.includes('DATABASE') || key.includes('POSTGRES') || key.includes('DB')
+    ));
     
     console.log('🔌 Initializing database connection...');
+    const dbUrl = process.env.DATABASE_URL || 
+                  process.env.DATABASE_PUBLIC_URL || 
+                  process.env.POSTGRES_URL ||
+                  process.env.DATABASE_PRIVATE_URL;
+    if (dbUrl) {
+      console.log('Using database URL:', dbUrl.substring(0, 30) + '...');
+    } else {
+      console.log('⚠️ No database URL found!');
+    }
+    
     await initializeDatabase();
     console.log('✅ Database initialized successfully');
     
