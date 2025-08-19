@@ -1,4 +1,3 @@
-import { Job } from 'bull';
 import { AppDataSource } from '../config/database';
 import { Analysis } from '../models/Analysis';
 import { PageData as PageDataEntity } from '../models/PageData';
@@ -14,10 +13,20 @@ interface AnalysisJobData {
   options: AnalysisOptions;
 }
 
-analysisQueue.process('analyze-website', 1, async (job: Job<AnalysisJobData>) => {
-  const { analysisId, url, options } = job.data;
+// シンプルキューシステム用のワーカー実装
+analysisQueue.on('completed', async (job: any, result: any) => {
+  logger.info(`Job completed: ${job.id}`, { result });
+});
+
+analysisQueue.on('failed', async (job: any, error: any) => {
+  logger.error(`Job failed: ${job.id}`, { error: error.message });
+});
+
+// 実際の分析処理を実行する関数
+export async function executeAnalysisJob(jobData: AnalysisJobData): Promise<any> {
+  const { analysisId, url, options } = jobData;
   
-  logger.info(`Starting analysis job for ${url}`, { analysisId, jobId: job.id });
+  logger.info(`Starting analysis job for ${url}`, { analysisId });
   
   const analysisRepository = AppDataSource.getRepository(Analysis);
   const pageDataRepository = AppDataSource.getRepository(PageDataEntity);
@@ -41,8 +50,6 @@ analysisQueue.process('analyze-website', 1, async (job: Job<AnalysisJobData>) =>
         crawledPages: progress.crawled,
         totalPages: progress.total
       });
-      
-      job.progress(progress.percentage);
     }, 2000);
 
     // ウェブサイトをクロール
@@ -109,6 +116,6 @@ analysisQueue.process('analyze-website', 1, async (job: Job<AnalysisJobData>) =>
       await crawler.close();
     }
   }
-});
+}
 
-logger.info('Analysis worker started');
+logger.info('Analysis worker started (simple queue mode)');
