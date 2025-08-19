@@ -3,7 +3,7 @@ builder = "nixpacks"
 buildCommand = "npm ci"
 
 [deploy]
-startCommand = "npm run start-simple"
+startCommand = "npm start"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
 
