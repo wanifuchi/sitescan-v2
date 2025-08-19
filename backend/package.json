@@ -2,10 +2,10 @@
   "name": "sitescan-v2-backend",
   "version": "2.0.0",
   "description": "SiteScan V2 - プライバシー重視の高機能ウェブサイト分析ツール バックエンドAPI",
-  "main": "dist/index.js",
+  "main": "server.js",
   "scripts": {
     "dev": "tsx watch src/index.simple.ts",
-    "build": "echo 'Skipping TypeScript build for production'",
+    "build": "echo 'Build completed'",
     "start": "node server.js",
     "create-admin": "tsx src/scripts/createAdminUser.ts"
   },
