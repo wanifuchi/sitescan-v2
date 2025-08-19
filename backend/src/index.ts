@@ -1,4 +1,3 @@
-import '/Users/noriaki/.claude/browser-echo/client-snippet.js';
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
