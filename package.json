@@ -1,0 +1,21 @@
+{
+  "name": "sitescan-v2-monorepo",
+  "version": "2.0.0",
+  "description": "SiteScan V2 - Monorepo with backend and frontend",
+  "private": true,
+  "scripts": {
+    "start": "cd backend && npm start",
+    "start-simple": "cd backend && npm run start-simple",
+    "install-backend": "cd backend && npm install",
+    "install-frontend": "cd frontend && npm install",
+    "install-all": "npm run install-backend && npm run install-frontend",
+    "build": "npm run install-backend && cd backend && npm run build"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
