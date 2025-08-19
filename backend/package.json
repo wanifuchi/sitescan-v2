@@ -7,6 +7,7 @@
     "dev": "tsx watch src/index.simple.ts",
     "build": "echo 'Build completed'",
     "start": "node server.js",
+    "start-simple": "node simple-server.js",
     "create-admin": "tsx src/scripts/createAdminUser.ts"
   },
   "keywords": [],
