@@ -67,9 +67,17 @@ app.use(errorHandler);
 
 const startServer = async (): Promise<void> => {
   try {
-    await initializeDatabase();
+    console.log('🔥 Starting SiteScan V2 server initialization...');
+    console.log('Environment:', process.env.NODE_ENV);
+    console.log('Port:', PORT);
+    console.log('Database URL exists:', !!process.env.DATABASE_URL);
     
-    app.listen(PORT, () => {
+    console.log('🔌 Initializing database connection...');
+    await initializeDatabase();
+    console.log('✅ Database initialized successfully');
+    
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`🚀 SiteScan V2 Server is running on port ${PORT}`);
       logger.info(`Server is running on port ${PORT}`, {
         port: PORT,
         environment: process.env.NODE_ENV,
@@ -77,6 +85,7 @@ const startServer = async (): Promise<void> => {
       });
     });
   } catch (error) {
+    console.error('❌ Failed to start server:', error);
     logger.error('Failed to start server:', error);
     process.exit(1);
   }
