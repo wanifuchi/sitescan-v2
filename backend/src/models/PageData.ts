@@ -9,31 +9,31 @@ export class PageData {
   @ManyToOne(() => Analysis, { onDelete: 'CASCADE' })
   analysis!: Analysis;
 
-  @Column()
+  @Column({ type: 'uuid' })
   analysisId!: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 2048 })
   url!: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 500 })
   title!: string;
 
-  @Column()
+  @Column({ type: 'int' })
   statusCode!: number;
 
   @Column({ type: 'float' })
   loadTime!: number;
 
-  @Column()
+  @Column({ type: 'varchar', length: 100 })
   contentType!: string;
 
-  @Column()
+  @Column({ type: 'int' })
   size!: number;
 
-  @Column()
+  @Column({ type: 'int' })
   depth!: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', length: 2048, nullable: true })
   parentUrl?: string;
 
   @Column('jsonb')

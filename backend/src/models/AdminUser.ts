@@ -5,31 +5,31 @@ export class AdminUser {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column({ unique: true })
+  @Column({ type: 'varchar', length: 100, unique: true })
   username!: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 255 })
   passwordHash!: string;
 
-  @Column({ unique: true })
+  @Column({ type: 'varchar', length: 255, unique: true })
   email!: string;
 
-  @Column({ default: 'admin' })
+  @Column({ type: 'varchar', length: 50, default: 'admin' })
   role!: string;
 
-  @Column({ default: true })
+  @Column({ type: 'boolean', default: true })
   isActive!: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: 'timestamp', nullable: true })
   lastLoginAt?: Date;
 
   @Column({ nullable: true, type: 'inet' })
   lastLoginIp?: string;
 
-  @Column({ default: 0 })
+  @Column({ type: 'int', default: 0 })
   loginAttempts!: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'timestamp', nullable: true })
   lockedUntil?: Date;
 
   @CreateDateColumn()

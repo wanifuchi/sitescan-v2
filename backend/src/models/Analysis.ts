@@ -10,7 +10,7 @@ export class Analysis {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 2048 })
   url!: string;
 
   @Column({
@@ -23,16 +23,16 @@ export class Analysis {
   @CreateDateColumn()
   startedAt!: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'timestamp', nullable: true })
   completedAt?: Date;
 
-  @Column({ default: 0 })
+  @Column({ type: 'int', default: 0 })
   totalPages!: number;
 
-  @Column({ default: 0 })
+  @Column({ type: 'int', default: 0 })
   crawledPages!: number;
 
-  @Column({ default: 0 })
+  @Column({ type: 'int', default: 0 })
   errorCount!: number;
 
   @Column('jsonb', { nullable: true })
@@ -42,19 +42,19 @@ export class Analysis {
   options!: AnalysisOptions;
 
   // 管理者システム用の新しいフィールド
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', length: 255, nullable: true })
   userFingerprint?: string;
 
   @Column({ nullable: true, type: 'inet' })
   userIp?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'text', nullable: true })
   userAgent?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'float', nullable: true })
   overallScore?: number;
 
-  @Column({ nullable: true, length: 10 })
+  @Column({ type: 'varchar', length: 10, nullable: true })
   grade?: string;
 
   @Column({ nullable: true, type: 'text' })
