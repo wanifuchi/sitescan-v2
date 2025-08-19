@@ -13,7 +13,7 @@ import adminRoutes from './routes/adminRoutes';
 import './workers/analysisWorker';
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 app.use(helmet());
 // CORS設定 - より包括的に設定
