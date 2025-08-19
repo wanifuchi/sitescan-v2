@@ -47,6 +47,7 @@
   ],
   "env": {
     "VITE_APP_NAME": "SiteScan V2",
-    "VITE_APP_VERSION": "2.0.0"
+    "VITE_APP_VERSION": "2.0.0",
+    "VITE_API_BASE_URL": "https://sitescan-v2-production.up.railway.app"
   }
 }

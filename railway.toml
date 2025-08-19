@@ -1,6 +1,6 @@
 [build]
 builder = "nixpacks"
-buildCommand = "cd backend && npm install"
+buildCommand = "cd backend && npm ci"
 
 [deploy]
 startCommand = "cd backend && npm start"
@@ -12,3 +12,4 @@ rootDirectory = "/backend"
 NODE_ENV = "production"
 PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = "true"
 PUPPETEER_EXECUTABLE_PATH = "/nix/store/chromium/bin/chromium"
+NODE_VERSION = "18.20.8"
